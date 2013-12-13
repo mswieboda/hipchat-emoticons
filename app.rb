@@ -36,6 +36,7 @@ get '/' do
 
   @file       = EmoticonFile.new("./emoticons.json")
   @emoticons  = @file.emoticons(params[:order])
+  @emoticons_custom = @emoticons.select{ |x| x.custom == true }
   @emeriti    = EmoticonFile.new("./emeriti.json", :emeriti => true).emoticons
   @all_emoticons = @emoticons + @emeriti
   @updated_at = @file.updated_at
