@@ -6,7 +6,8 @@ require "cgi"
 # slant.png workaround :\ https://github.com/henrik/hipchat-emoticons/pull/10
 # Doubly escaped for Ruby + JS.
 BOOKMARKLET = 'alert("Close this dialog and copy the URL, then go back to the terminal!"); re = new RegExp("^"+config.group_id+"/");' +
-              'es = emoticons.emoticons.filter(function(x) { return !x.image.match(re) }).map(function(x) { delete x.regex; if (x.image == "slant.png") x.shortcut = ":\\\\"; return x; });' +
+              'es = emoticons.emoticons; es.forEach(function(x) { if (x.image.match(re)) { x.custom = true; } else { x.custom = false; } });' +
+              'es.map(function(x) { delete x.regex; if (x.image == "slant.png") x.shortcut = ":\\\\"; return x; });' +
               'location.hash = JSON.stringify(es)'
 
 desc "Updates emoticons.json."

@@ -103,7 +103,7 @@ end
 
 class Emoticon
   include Comparable
-  attr_reader :shortcut, :path, :width, :height
+  attr_reader :shortcut, :path, :width, :height, :custom
 
   BASE_URL = "https://dujrsrsgsd3nh.cloudfront.net/img/emoticons/"
   EMERITI_BASE_URL = "/emeriti/"
@@ -113,6 +113,7 @@ class Emoticon
     @width    = data["width"].to_i
     @height   = data["height"].to_i
     @shortcut = data["shortcut"]
+    @custom = data["custom"]
     @emeriti  = opts[:emeriti]
   end
 
