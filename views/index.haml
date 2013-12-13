@@ -45,12 +45,12 @@
       - @emoticons.each do |e|
         = partial :emoticon, :e => e
 
-    %h2 Emoticons emeriti
+    %h2 Custom Emoticons
 
-    %p These emoticons were removed by HipChat, but you can <a href="https://hipchat.com/admin/emoticons">upload them as custom emoticons</a>.
+    %p These emoticons are custom to your company and HipChat admin settings.
 
     .emoticons
-      - @emeriti.each do |e|
+      - @emoticons_custom.each do |e|
         = partial :emoticon, :e => e
 
     %footer

@@ -37,8 +37,7 @@ get '/' do
   @file       = EmoticonFile.new("./emoticons.json")
   @emoticons  = @file.emoticons(params[:order])
   @emoticons_custom = @emoticons.select{ |x| x.custom == true }
-  @emeriti    = EmoticonFile.new("./emeriti.json", :emeriti => true).emoticons
-  @all_emoticons = @emoticons + @emeriti
+  @all_emoticons = @emoticons
   @updated_at = @file.updated_at
   haml :index
 end
@@ -53,10 +52,6 @@ helpers do
   end
 end
 
-def emeriti
-  []
-end
-
 
 # Models.
 
@@ -68,11 +63,10 @@ class EmoticonFile
 
   def initialize(file, opts={})
     @file = file
-    @emeriti = opts[:emeriti]
   end
 
   def emoticons(order=nil)
-    es = json.map { |e| Emoticon.new(e, :emeriti => @emeriti) }
+    es = json.map { |e| Emoticon.new(e) }
 
     # The file can have duplicates, e.g. ":)" and ":-)". Only keep the first.
     known_paths = Set.new
@@ -107,15 +101,13 @@ class Emoticon
   attr_reader :shortcut, :path, :width, :height, :custom
 
   BASE_URL = "https://dujrsrsgsd3nh.cloudfront.net/img/emoticons/"
-  EMERITI_BASE_URL = "/emeriti/"
 
-  def initialize(data, opts)
+  def initialize(data)
     @path     = data["image"]
     @width    = data["width"].to_i
     @height   = data["height"].to_i
     @shortcut = data["shortcut"]
-    @custom = data["custom"]
-    @emeriti  = opts[:emeriti]
+    @custom   = data["custom"]
   end
 
   def url
@@ -125,10 +117,6 @@ class Emoticon
   private
 
   def base_url
-    if @emeriti
-      EMERITI_BASE_URL
-    else
-      BASE_URL
-    end
+    BASE_URL
   end
 end
