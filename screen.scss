@@ -2,7 +2,7 @@ $blue: rgb(0, 182, 253);
 
 body {
   margin: 0 auto;
-  padding: 20px;
+  padding: 1em;
   max-width: 1600px;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 14px;
@@ -17,20 +17,20 @@ strong {
   font-weight: 500;
 }
 
-h1 {
-  font-size: 35px;
-}
-
 a, a:visited {
   color: $blue;
 }
 
 .filter-form {
-  margin: 30px 0;
+  margin: 1em 0;
+
+  .filter {
+    min-width: 200px;
+  }
 }
 
 .emoticons {
-  margin: 50px 0 30px;
+  margin: 1em 0;
 }
 
 a.emoticon {

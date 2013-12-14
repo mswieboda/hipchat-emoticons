@@ -16,9 +16,8 @@
     .notification
 
     %header
-      %h1 HipChat emoticons
+      %h2 Snapsheet HipChat emoticons
       %p
-        A complete list of
         <strong>#{@emoticons.length}</strong> (#{@emoticons_custom.length} custom)
         <a href="http://www.hipchat.com/r/2zt39">HipChat</a> emoticons.
         Click to copy.
@@ -45,9 +44,7 @@
       - @emoticons.each do |e|
         = partial :emoticon, :e => e
 
-    %h2 Custom Emoticons
-
-    %p These emoticons are custom to your company and HipChat admin settings.
+    %h2 Custom Snapsheet Emoticons
 
     .emoticons
       - @emoticons_custom.each do |e|
@@ -55,10 +52,8 @@
 
     %footer
       %p
-        %span.footer-part Not affiliated with Atlassian HipChat.
-        %span.footer-part Emoticon requests, questions or complaints? <a href="http://help.hipchat.com/">Contact HipChat</a>.
+        %span.footer-part Not affiliated with Atlassian HipChat or Snapsheet (yet).
 
       %p
         %span.footer-part Last updated #{@updated_at.strftime("%b %e, %Y")}.
-        %span.footer-part This site is by <a href="http://henrik.nyh.se">Henrik Nyh</a>.
-        %span.footer-part <a href="https://github.com/henrik/hipchat-emoticons">View source on GitHub</a>.
+        %span.footer-part <a href="https://github.com/mswieboda/hipchat-emoticons">View source on GitHub</a>.
